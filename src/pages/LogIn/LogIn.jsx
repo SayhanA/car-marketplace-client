@@ -1,7 +1,7 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
 const LogIn = () => {
@@ -10,8 +10,11 @@ const LogIn = () => {
     const [password, setPassword] = useState('');
     const [signInError, setSignInError] = useState(null)
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, handleGoogleSignIn, handleGitHubSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,7 +26,7 @@ const LogIn = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            navigate('/')
+            navigate(from)
             setSignInError({
                 error: false,
                 message: "Congratulation You are successfully logged in"
@@ -66,6 +69,27 @@ const LogIn = () => {
             setError("");
         }
 
+    }
+
+    const handleGoogleLogin = () => {
+        handleGoogleSignIn()
+        .then(result => {
+            const user = result.user;
+            navigate(from)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+    const handleGitHubLogin = () => {
+        handleGitHubSignIn()
+        .then(result => {
+            const user = result.user;
+            navigate(from)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     return (
@@ -116,8 +140,8 @@ const LogIn = () => {
                             <div className='w-[50%] border border-gray-500'></div>
                         </div>
 
-                        <div className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-8 absolute left-2' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />  Google</div>
-                        <div className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-9 absolute left-2' src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="" />  GitHub</div>
+                        <div onClick={handleGoogleLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-8 absolute left-2' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />  Google</div>
+                        <div onClick={handleGitHubLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-9 absolute left-2' src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="" />  GitHub</div>
 
                     </div>
 

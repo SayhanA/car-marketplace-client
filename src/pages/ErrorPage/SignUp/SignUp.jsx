@@ -1,6 +1,6 @@
 import { Checkbox, Label } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../../../provider/AuthProvider';
 
@@ -12,7 +12,8 @@ const SignUp = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [errorPage, setErrorPage] = useState(null)
-    const { signUp } = useContext(AuthContext);
+    const { signUp, handleGoogleSignIn, handleGitHubSignIn } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleSubmit = event => {
         setErrorPage('')
@@ -29,6 +30,7 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                navigate('/')
             })
             .catch(error => {
                 console.log(error)
@@ -95,14 +97,25 @@ const SignUp = () => {
 
     }
 
-    const handleGoogleSignIn = () => {
-        // googleSignIn()
-        // .then(result => {
-        //     const user = result.user;
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        // })
+    const handleGoogleLogin = () => {
+        handleGoogleSignIn()
+        .then(result => {
+            const user = result.user;
+            navigate('/')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+    const handleGitHubLogin = () => {
+        handleGitHubSignIn()
+        .then(result => {
+            const user = result.user;
+            navigate('/')
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     return (
@@ -164,11 +177,11 @@ const SignUp = () => {
                             <div className='h-0 w-[50%] border border-gray-500'></div>
                         </div>
                         <p className='text-3xl font-bold text-center text-white'>Continue With</p>
-                        <div onClick={handleGoogleSignIn} className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
+                        <div onClick={handleGoogleLogin} className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
                             <img className='absolute left-2 w-9 h-9' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
                             <p className='text-black font-bold text-xl'>Continue With Google</p>
                         </div>
-                        <div className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
+                        <div onClick={handleGitHubLogin} className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
                             <img className='absolute left-2 w-9 h-9' src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" />
                             <p className='text-black font-bold text-xl'>Continue With GitHub</p>
                         </div>
