@@ -9,7 +9,7 @@ const ReactTabs = () => {
     const [props, setProps] = useState("Classic")
 
     useEffect(() => {
-        console.log(props);
+        // console.log(props);
         fetch(`http://localhost:5000/cars/${props}`)
             .then(res => res.json())
             .then(data => {

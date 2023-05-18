@@ -1,8 +1,8 @@
 import { Checkbox, Label } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { AuthContext } from '../../provider/AuthProvider';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const SignUp = () => {
     const [password, setPassword] = useState('');
@@ -12,7 +12,7 @@ const SignUp = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [errorPage, setErrorPage] = useState(null)
-    // const { signUp, googleSignIn } = useContext(AuthContext);
+    const { signUp } = useContext(AuthContext);
 
     const handleSubmit = event => {
         setErrorPage('')
@@ -23,21 +23,21 @@ const SignUp = () => {
         const photo = form.photo.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
-        // console.log(name,email,photo, password, confirmPassword)
-        // if(password === confirmPassword){
-        //     signUp(email, password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         setErrorPage(error.message)
-        //     })
-        // }
-        // else{
-        //     setErrorPage("Password and confirm password are not same")
-        // }
+        console.log(name,email,photo, password, confirmPassword)
+        if(password === confirmPassword){
+            signUp(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.log(error)
+                setErrorPage(error.message)
+            })
+        }
+        else{
+            setErrorPage("Password and confirm password are not same")
+        }
     }
 
     const handlePassword = e => {

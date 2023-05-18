@@ -13,7 +13,7 @@ const UserReview = () => {
         .then(data => setUsers(data))
     },[])
 
-    console.log(users)
+    // console.log(users)
     
     return (
         <div className="container mx-auto">

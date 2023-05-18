@@ -1,9 +1,13 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import ActiveLink from '../ActiveLink/ActiveLink';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
+    const { user } = useContext(AuthContext);
+    
     return (
         <div className='absolute w-full z-50 lg:w-11/12 left-[50%] translate-x-[-50%]'>
             <Navbar style={{background: "transparent"}}
@@ -46,17 +50,17 @@ const NavBar = () => {
                     </div>
 
                     {
-                        false ? <Dropdown
+                        user ? <Dropdown
                         arrowIcon={false}
                         inline={true}
-                        label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
+                        label={user?.photoURL ? <Avatar alt="User settings" img={user?.photoURL} rounded={true} />: <FaRegUserCircle />}
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">
                                 Bonnie Green
                             </span>
                             <span className="block truncate text-sm font-medium">
-                                name@flowbite.com
+                                {user?.email}
                             </span>
                         </Dropdown.Header>
                         <Dropdown.Item>
