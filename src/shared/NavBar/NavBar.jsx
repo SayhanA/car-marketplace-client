@@ -21,8 +21,8 @@ const NavBar = () => {
                         className="mr-3 h-6 sm:h-9"
                         alt="Flowbite Logo"
                     />
-                    <span className="font-mono text-2xl self-center whitespace-nowrap font-semibold dark:text-white absolute left-14">
-                        <span className='text-blue-500'>&</span><span className='text-gray-500'>T</span>o<span className='text-green-400'>y</span>
+                    <span className="font-mono text-2xl self-center whitespace-nowrap font-semibold dark:text-white absolute left-14 text-gray-200">
+                        <span className='text-blue-500 '>&</span><span className='text-gray-500'>T</span>o<span className='text-green-400'>y</span>
                     </span>
                 </Navbar.Brand>
 

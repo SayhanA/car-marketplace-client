@@ -4,6 +4,7 @@ import NavBar from '../shared/NavBar/NavBar';
 import Footer from '../shared/Footer/Footer';
 
 const Main = () => {
+    
     return (
         <div>
             <NavBar />

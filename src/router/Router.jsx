@@ -9,6 +9,7 @@ import Error from "../pages/ErrorPage/Error";
 import LogIn from "../pages/LogIn/LogIn";
 import SignUp from "../pages/ErrorPage/SignUp/SignUp";
 import PrivateRouter from "./PrivateRouter";
+import Car from "../pages/Car/Car";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'addAToy',
-                element: <AddAToy />
+                element: <PrivateRouter><AddAToy /></PrivateRouter>
             },
             {
                 path: 'blogs',
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
             {
                 path: 'signUp',
                 element: <SignUp />
+            },
+            {
+                path: 'car/:id',
+                element: <PrivateRouter><Car /></PrivateRouter>,
+                loader: ({params}) => fetch(`http://localhost:5000/car/${params.id}`)
             }
         ]
     }
