@@ -173,10 +173,6 @@ const SignUp = () => {
                             <p className='text-black font-bold text-xl'>Continue With GitHub</p>
                         </div>
                         <div className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
-                            <img className='absolute left-2 w-10 h-10 rounded-full' src="/public/images/fb.png" alt="" />
-                            <p className='text-black font-bold text-xl'>Continue With Facebook</p>
-                        </div>
-                        <div className='relative rounded-full flex justify-center items-center gap-4 border h-[55px] border-gray-500 bg-[#cccccc40] text-white transition-all hover:scale-105'>
                             <img className='absolute left-2 w-9 h-9' src="https://png.pngtree.com/png-clipart/20221019/original/pngtree-twitter-social-media-round-icon-png-image_8704823.png" alt="" />
                             <p className='text-black font-bold text-xl'>Continue With Twitter</p>
                         </div>

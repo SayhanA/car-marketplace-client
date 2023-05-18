@@ -6,7 +6,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { FaRegUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     
     return (
         <div className='absolute w-full z-50 lg:w-11/12 left-[50%] translate-x-[-50%]'>
@@ -53,7 +53,7 @@ const NavBar = () => {
                         user ? <Dropdown
                         arrowIcon={false}
                         inline={true}
-                        label={user?.photoURL ? <Avatar alt="User settings" img={user?.photoURL} rounded={true} />: <FaRegUserCircle />}
+                        label={user?.photoURL ? <Avatar alt="User settings" img={user?.photoURL} rounded={true} />: <FaRegUserCircle className='text-4xl ml-2' />}
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">
@@ -71,7 +71,7 @@ const NavBar = () => {
                         </Dropdown.Item>
                         
                         {/* <Dropdown.Divider /> */}
-                        <Dropdown.Item>
+                        <Dropdown.Item onClick={logOut}>
                             Sign out
                         </Dropdown.Item>
                     </Dropdown> :
