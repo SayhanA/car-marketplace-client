@@ -1,6 +1,7 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import React from 'react';
 import ActiveLink from '../ActiveLink/ActiveLink';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -24,7 +25,7 @@ const NavBar = () => {
 
                 <div className="flex md:order-2">
 
-                    <div className="flex-none">
+                    <div className="flex-none text-white">
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle">
                                 <div className="indicator">
@@ -44,7 +45,8 @@ const NavBar = () => {
                         </div>
                     </div>
 
-                    <Dropdown
+                    {
+                        false ? <Dropdown
                         arrowIcon={false}
                         inline={true}
                         label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
@@ -68,10 +70,12 @@ const NavBar = () => {
                         <Dropdown.Item>
                             Sign out
                         </Dropdown.Item>
-                    </Dropdown>
+                    </Dropdown> :
+                    <Link to='/login' className='btn btn-primary normal-case rounded-md'>Login</Link>
+                    }
 
                 </div>
-                <Navbar.Collapse>
+                <Navbar.Collapse className='text-gray-200'>
                     <ActiveLink to='/'>Home</ActiveLink>
                     <ActiveLink to='/allToys'>All Toys</ActiveLink>
                     <ActiveLink to='/myToys'>My Toys</ActiveLink>
