@@ -12,7 +12,7 @@ const Car = () => {
     useTitle(" Single Car");
     const [num, setNum] = useState(1);
     const loader = useLoaderData()
-    console.log(loader)
+    // console.log(loader)
     const { _id, vehicleType, title, sellerEmail, seller, scale, ratings, quantity, price, packaging, likes, image5, image4, image3, image2, image, features, details, description, color, category, carModel, brand, available, UPC, SKU } = loader[0];
     const [img, setImg] = useState(image)
 

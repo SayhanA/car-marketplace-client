@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
@@ -33,6 +33,21 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, gitHubProvider)
     }
 
+        // Profile updated!
+
+        const updateUser = (name, photo) => {
+            updateProfile(auth.currentUser, {
+                displayName: name,
+                photoURL: photo,
+                
+            }).then((result) => {
+                console.log(result.user)
+            }).catch((error) => {
+        
+            });
+        }
+    
+
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
@@ -49,6 +64,7 @@ const AuthProvider = ({children}) => {
         logOut,
         handleGoogleSignIn,
         handleGitHubSignIn,
+        updateUser,
 
     }
     

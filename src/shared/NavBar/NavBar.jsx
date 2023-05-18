@@ -57,7 +57,7 @@ const NavBar = () => {
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">
-                                Bonnie Green
+                                {user?.displayName}
                             </span>
                             <span className="block truncate text-sm font-medium">
                                 {user?.email}

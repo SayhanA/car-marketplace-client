@@ -2,7 +2,7 @@ import { Checkbox, Label } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { AuthContext } from '../../../provider/AuthProvider';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const SignUp = () => {
     const [password, setPassword] = useState('');
@@ -12,7 +12,7 @@ const SignUp = () => {
     const [show, setShow] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [errorPage, setErrorPage] = useState(null)
-    const { signUp, handleGoogleSignIn, handleGitHubSignIn } = useContext(AuthContext);
+    const { signUp, handleGoogleSignIn, handleGitHubSignIn, updateUser } = useContext(AuthContext);
     const navigate = useNavigate()
 
     const handleSubmit = event => {
@@ -28,9 +28,11 @@ const SignUp = () => {
         if(password === confirmPassword){
             signUp(email, password)
             .then(result => {
+                updateUser(name, photo)
                 const user = result.user;
                 console.log(user)
-                navigate('/')
+                navigate('/');
+                // form.reset()
             })
             .catch(error => {
                 console.log(error)
