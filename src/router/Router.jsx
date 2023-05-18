@@ -5,16 +5,18 @@ import AllToys from "../pages/AllToys/AllToys";
 import AddAToy from "../pages/AddAToy/AddAToy";
 import Blogs from "../pages/Blogs/Blogs";
 import MyToys from "../pages/MyToys/MyToys";
+import Error from "../pages/ErrorPage/Error";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        
         children: [
             {
                 path: '/',
-                element: <Home />,
+                element: <Home />,     
                 loader: () => fetch('http://localhost:5000/cars'),
             },
             {

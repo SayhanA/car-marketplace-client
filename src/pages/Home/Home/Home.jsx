@@ -3,6 +3,10 @@ import useTitle from '../../../shared/hooks/useTitle';
 import Banner from '../Banner/Banner';
 import { useLoaderData } from 'react-router-dom';
 import Display from '../Display/Display';
+import ReactTabs from '../Tabs/Tabs';
+import Marquee from "react-fast-marquee";
+import Children from '../Childerns/Childrens';
+import UserReview from '../UserReview/UserRevies';
 
 const Home = () => {
     useTitle("Home")
@@ -13,11 +17,17 @@ const Home = () => {
         <div className=' w-full'>
             <Banner />
             <h3 className='lg:text-3xl text-center font-bold py-5 pt-10'>Top Rated Selling Cars</h3>
-            <div className='grid lg:grid-cols-3 p-32 pt-10 gap-10 mx-auto'>
+            <Marquee pauseOnHover pauseOnClick>
                 {
                     loader.slice(0, 6).map(car => <Display key={car._id} car={car}></Display>)
                 }
-            </div>
+            </Marquee>  
+            <Children />
+
+            <ReactTabs/>
+
+            <UserReview />
+            
         </div>
     );
 };

@@ -3,40 +3,34 @@ import React from 'react';
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
+import { FaLongArrowAltRight } from 'react-icons/fa';
 
 const Display = ({ car }) => {
-    console.log(car)
-    const { image, ratings, price, title } = car;
+    // console.log(car)
+    const { image, image5, ratings, price, title, carModel, brand, available, SKU, color } = car;
 
     return (
-        <div className="max-w-sm h-[450px] border overflow-hidden shadow-lg rounded-lg">
-            <Card className='border-none shadow-none'
-                imgAlt={title}
-                imgSrc={image}
-            >
-                <a href="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                        {title}
-                    </h5>
-                </a>
+        <div className="max-w-sm ml-3 border overflow-hidden shadow-lg rounded-lg relative">
 
-                <div className='flex gap-3'>                
-                    <Rating style={{ maxWidth: 100 }} value={ratings} readOnly />
-                    <span>({ratings})</span>
+            <div className=' border w-[350px] h-[300px] relative'>
+                <img src={image} className='absolute' alt="" />
+                <div className='border absolute z-10  w-full h-full flex items-end p-5'>
+                    <div>
+                        <h5 className="text-lg font-semibold tracking-tight text-gray-700 dark:text-white">
+                            {title}
+                        </h5>
+                        <div className='flex gap-3'>
+                            <Rating style={{ maxWidth: 100 }} value={ratings} readOnly />
+                            <span>({ratings})</span>
+                        </div>
+                        <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                            ${price}
+                        </span>
+                    </div>
                 </div>
-
-                <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                        ${price}
-                    </span>
-                    <a
-                        href="#"
-                        className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    >
-                        Add to cart
-                    </a>
-                </div>
-            </Card>
+               
+            </div>
+            
         </div>
     );
 };
