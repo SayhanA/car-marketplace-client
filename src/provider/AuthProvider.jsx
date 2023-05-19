@@ -52,6 +52,7 @@ const AuthProvider = ({children}) => {
         const subscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
+            console.log(currentUser)
         })
         return () => subscribe();
     },[])
@@ -76,3 +77,9 @@ const AuthProvider = ({children}) => {
 };
 
 export default AuthProvider;
+
+
+// https://i.ibb.co/tcQkJkw/boy-1.jpg
+// Khalidmahmud1@gmail.com
+
+// https://i.ibb.co/wBsmGqB/Lboy1.jpg
