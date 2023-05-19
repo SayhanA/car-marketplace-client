@@ -32,7 +32,7 @@ const AddAToy = () => {
         data.packaging = "Box";
         console.log(data)
         setData(data)
-        fetch('http://localhost:5000/cars', {
+        fetch('https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars', {
             method: "POST",
             headers: { 'content-type': "application/json" },
             body: JSON.stringify(data)

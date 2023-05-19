@@ -16,7 +16,7 @@ const MyToys = () => {
     const [update, setUpdate] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cars?email=${user.email}`)
+        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -38,7 +38,7 @@ const MyToys = () => {
         const info = { title, price, quantity, description }
         // console.log(info);
 
-        fetch(`http://localhost:5000/cars/${id}`, {
+        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${id}`, {
             method: "PUT",
             headers: { 'content-type': "application/json" },
             body: JSON.stringify(info)
@@ -73,7 +73,7 @@ const MyToys = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 
-                fetch(`http://localhost:5000/cars/${id}`, {
+                fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${id}`, {
                     method: "DELETE",
 
                 })

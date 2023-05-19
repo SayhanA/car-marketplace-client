@@ -10,7 +10,7 @@ const ReactTabs = () => {
 
     useEffect(() => {
         // console.log(props);
-        fetch(`http://localhost:5000/cars/${props}`)
+        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${props}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)

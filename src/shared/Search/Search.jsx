@@ -23,7 +23,7 @@ const Search = () => {
             // console.log("search text")
         }
         else {
-            fetch(`http://localhost:5000/search/${text}`)
+            fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/search/${text}`)
                 .then(res => res.json())
                 .then(data => {
                     setRes(data)

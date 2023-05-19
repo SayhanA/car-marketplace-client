@@ -8,7 +8,7 @@ const UserReview = () => {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/users')
         .then(res => res.json())
         .then(data => setUsers(data))
     },[])
