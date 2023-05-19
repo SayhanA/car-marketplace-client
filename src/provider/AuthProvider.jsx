@@ -8,9 +8,14 @@ const googleProvider = new GoogleAuthProvider();
 const gitHubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({children}) => {
+    const [searchData, setSearchData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
+    const carSearch = (props) => {
+        setSearchData(props)
+    }
+    
     const signUp = (email, password) =>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -66,6 +71,8 @@ const AuthProvider = ({children}) => {
         handleGoogleSignIn,
         handleGitHubSignIn,
         updateUser,
+        carSearch,
+        searchData,
 
     }
     
