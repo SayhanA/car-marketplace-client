@@ -51,13 +51,33 @@ const AllToys = () => {
                     <p className='text-center font-bold py-10 text-2xl text-white'>We provide Best Products for Customers</p>
                 </div>
             </div>
-            <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
+            {/* <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
                 {
                     data.slice(0, 12).map((car, index) => <div key={index} className="card w-96 bg-base-100 shadow-xl">
                         <figure><img src={car.image} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{car.title}</h2>
                             <p>{car.description}</p>
+                            <p><span className='font-bold'>Seller:</span> {car.seller} </p>
+                            <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
+                            <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
+                            <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
+                            <div className="card-actions justify-between">
+                                <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
+                                <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                
+                            </div>
+                        </div>
+                    </div>)
+                }
+            </div> */}
+            <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
+                {
+                    data.map((car, index) => <div key={index} className="card w-96 bg-base-100 shadow-xl">
+                        <figure><img src={car.image} alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{car.title}</h2>
+                            <p>{car?.details? car?.details.slice(0,70) : car?.features.slice(0,70)}</p>
                             <p><span className='font-bold'>Seller:</span> {car.seller} </p>
                             <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
                             <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
