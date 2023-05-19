@@ -60,8 +60,8 @@ const Car = () => {
 
                     <p className='pt-5'><span className='font-bold pr-2 '>SUK:</span>{SKU}</p>
                     <p className='pt-1'><span className='font-bold pr-2 '>UPC:</span>{UPC}</p>
-                    <p className='pt-1'><span className='font-bold pr-2 '>Seller Name:</span>{user?.displayName ? user?.displayName : seller}</p>
-                    <p className='pt-1'><span className='font-bold pr-2 '>Seller Email:</span>{user?.email}</p>
+                    <p className='pt-1'><span className='font-bold pr-2 '>Seller Name:</span>{seller}</p>
+                    <p className='pt-1'><span className='font-bold pr-2 '>Seller Email:</span>{sellerEmail}</p>
                     <p className='pt-1'><span className='font-bold pr-2 '>Car Brand:</span>{brand}</p>
                     <p className='pt-1'><span className='font-bold pr-2 '>Car Model:</span>{carModel}</p>
                     <p className='pt-1'><span className='font-bold pr-2 '>Color:</span>{color}</p>
@@ -87,7 +87,7 @@ const Car = () => {
                 <div>
                     <span className='text-bold text-2xl text-gray-500'>{carModel}, {color}, {brand}-{SKU}W-{scale}scale {title} </span>
                 </div>
-                <p className='pt-4'>{description} {details}</p>
+                <p className='pt-4'>Description: {description} {details}</p>
 
                 <div className='pt-6 font-bold'>
                     <p className='font-bold text-lg py-3'>Features</p>
