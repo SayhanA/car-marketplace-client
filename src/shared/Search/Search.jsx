@@ -54,8 +54,8 @@ const Search = () => {
 
     return (
         <div>
-            <div className='bg-[#292944] h-[250px] flex justify-end items-center'>
-                <p className='text-white text-4xl font-bold  ml-32'>Car&Toy</p>
+            <div className='bg-[#292944] h-[250px] flex flex-wrap justify-end items-center'>
+                <p className='text-white md:text-4xl text-xl pl-4 font-bold'>Car&Toy</p>
 
                 <div onClick={handleOrder} className='mr-auto ml-10'>
                     {
@@ -63,13 +63,13 @@ const Search = () => {
                     }
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex items-center w-6/12 pr-20">
+                <form onSubmit={handleSubmit} className="flex items-center md:w-6/12 lg:pr-20 mx-auto">
                     <label htmlFor="voice-search" className="sr-only">Search</label>
                     <div className="relative w-full">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                         </div>
-                        <input onKeyDown={handleOnKeyDown} onChange={handleSearch} type="text" name='search' value={text} id="voice-search" className="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for you desire toy . . ." required />
+                        <input onKeyDown={handleOnKeyDown} onChange={handleSearch} type="text" name='search' value={text} id="voice-search" className=" bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Search for you desire toy . . ." required />
                         <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3">
                             <svg aria-hidden="true" className="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clipRule="evenodd"></path></svg>
                         </button>

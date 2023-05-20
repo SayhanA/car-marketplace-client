@@ -8,7 +8,7 @@ const Blogs = () => {
         <div className=''>
             <div className='h-[70px] bg-[#292944]'></div>
             <h3 className='text-center text-3xl font-bold my-10'>Some Questions & Answers</h3>
-            <div className='mx-32 mb-20'>
+            <div className='md:mx-32 mx-5 mb-20'>
                 <p className='font-bold'>01. What is an access token and refresh token? How do they work and where should we store them on the client-side?</p>
 
                 <p className='pt-2 mb-10'><span className='font-bold'>Answer:</span> Refresh tokens are a way to obtain new access tokens without requiring the user to authenticate again. They are useful for long-lived applications that need to access protected resources on behalf of the user. However, not all OAuth 2.0 clients and scopes can use refresh tokens. In this article, you will learn how to use refresh tokens with different types of OAuth 2.0 clients and scopes, and what are the benefits and risks involved.
@@ -39,12 +39,12 @@ const Blogs = () => {
 
                 <p className='pt-2 mb-10'><span className='font-bold'>Answer:</span> Aggregation is a way of processing a large number of documents in a collection by means of passing them through different stages. The stages make up what is known as a pipeline. The stages in a pipeline can filter, sort, group, reshape and modify documents that pass through the pipeline.
 
-One of the most common use cases of Aggregation is to calculate aggregate values for groups of documents. This is similar to the basic aggregation available in SQL with the GROUP BY clause and COUNT, SUM and AVG functions. MongoDB Aggregation goes further though and can also perform relational-like joins, reshape documents, create new and update existing collections, and so on. 
+                    One of the most common use cases of Aggregation is to calculate aggregate values for groups of documents. This is similar to the basic aggregation available in SQL with the GROUP BY clause and COUNT, SUM and AVG functions. MongoDB Aggregation goes further though and can also perform relational-like joins, reshape documents, create new and update existing collections, and so on.
 
-While there are other methods of obtaining aggregate data in MongoDB, the aggregation framework is the recommended approach for most work. Each stage in the pipeline performs a specific operation on the input data and produces transformed output. The output of one stage becomes the input for the next stage in the pipeline.
-MongoDB provides a rich set of aggregation operators and expressions that can be used in different stages of the pipeline. These operators allow you to perform various computations, transformations, and data manipulations.
+                    While there are other methods of obtaining aggregate data in MongoDB, the aggregation framework is the recommended approach for most work. Each stage in the pipeline performs a specific operation on the input data and produces transformed output. The output of one stage becomes the input for the next stage in the pipeline.
+                    MongoDB provides a rich set of aggregation operators and expressions that can be used in different stages of the pipeline. These operators allow you to perform various computations, transformations, and data manipulations.
 
-Common Aggregation Stages:  $sort, $group. $match, $unwind, $limit and $skip, $project</p>
+                    Common Aggregation Stages:  $sort, $group. $match, $unwind, $limit and $skip, $project</p>
             </div>
         </div>
     );

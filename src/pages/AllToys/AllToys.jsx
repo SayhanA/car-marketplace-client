@@ -68,16 +68,16 @@ const AllToys = () => {
             <div className='h-[500px] w-full relative'>
                 <img src="/images/cars.png" className='w-full h-[500px]' alt="" />
                 <div className='absolute top-0 h-[500px] w-full bg-[#ffdd009b]'>
-                    <h2 className='lg:text-4xl text-center font-bold pt-10'>20% Discount <br /> On All Kid's Entertaining Toys</h2>
+                    <h2 className='lg:text-4xl text-xl text-center font-bold pt-10'>20% Discount <br /> On All Kid's Entertaining Toys</h2>
                     <p className='lg:text-3xl text-center py-5'>Offer Expires on</p>
-                    <div className='bg-[#FE6B34] lg:p-14 w-fit rounded-xl lg:text-6xl font-bold text-white lg:tracking-[10px] mx-auto'><Countdown date={Date.now() + 10000 * 100000} renderer={renderer} /></div>
+                    <div className='bg-[#FE6B34] p-5 text-xl lg:p-14 w-fit rounded-xl lg:text-6xl font-bold text-white lg:tracking-[10px] mx-auto'><Countdown date={Date.now() + 10000 * 100000} renderer={renderer} /></div>
                     {/* <p className='p-3 bg-white w-fit rounded-md mx-auto mt-10 text-xl font-bold px-10'>shop now</p> */}
                     <p className='text-center font-bold py-10 text-2xl text-white'>We provide Best Products for Customers</p>
                 </div>
             </div>
             <Search />
             
-            <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
+            <div className='grid lg:grid-cols-3 md:w-10/12 mx-auto gap-10 my-20'>
                 {
                     products.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
                         <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>

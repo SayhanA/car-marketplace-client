@@ -21,19 +21,19 @@ const ReactTabs = () => {
 
     return (
         <div>
-            <h3 className='lg:text-4xl font-bold text-center pb-10'>Our Toys & Categories</h3>
+            <h3 className='lg:text-4xl font-bold text-center md:pb-10 pb-5'>Our Toys & Categories</h3>
             
-            <Tabs className='p-32 pb-10 pt-0 '>
+            <Tabs className='lg:p-32 pb-10 pt-0 '>
                 <TabList >
-                    <Tab onClick={() => setProps("Classic")}>Classic Cars</Tab>
-                    <Tab onClick={() => setProps("Sport")}>Sports Cars</Tab>
-                    <Tab onClick={() => setProps("Construction")}>Construction Vehicles</Tab>
-                    <Tab onClick={() => setProps("Emergency")}>Emergency Vehicles</Tab>
+                    <Tab onClick={() => setProps("Classic")}><p className='text-sm flex md:text-lg'>Classic <span className='sm:block hidden'>Cars</span> </p></Tab>
+                    <Tab onClick={() => setProps("Sport")}><p className='text-sm flex md:text-lg'>Sports <span className='sm:block hidden'>Cars</span> </p></Tab>
+                    <Tab onClick={() => setProps("Construction")}><p className='text-sm flex md:text-lg'>Construction <span className='sm:block hidden'>Vehicles</span> </p></Tab>
+                    <Tab onClick={() => setProps("Emergency")}><p className='text-sm flex md:text-lg'>Emergency <span className='sm:block hidden'>Vehicles</span> </p></Tab>
                 </TabList>
 
 
                 <TabPanel>
-                    <div className='grid grid-cols-3 gap-10 p-5'>
+                    <div className='md:grid lg:grid-cols-3 gap-10 p-5 flex flex-col'>
                         {
                             !show && cars.slice(0, 6).map((data, index) => <CarCard data={data} index={index} key={data._id}></CarCard>)
                         }
@@ -46,7 +46,7 @@ const ReactTabs = () => {
                     }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid grid-cols-3 gap-10 p-5'>
+                    <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
                             !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
@@ -62,7 +62,7 @@ const ReactTabs = () => {
                     }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid grid-cols-3 gap-10 p-5'>
+                    <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
                             !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
@@ -75,7 +75,7 @@ const ReactTabs = () => {
                     }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid grid-cols-3 gap-10 p-5'>
+                    <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
                             !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }

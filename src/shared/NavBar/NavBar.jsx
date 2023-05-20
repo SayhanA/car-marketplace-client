@@ -21,7 +21,7 @@ const NavBar = () => {
                         className="mr-3 h-6 sm:h-9"
                         alt="Flowbite Logo"
                     />
-                    <span className="font-mono text-2xl self-center whitespace-nowrap font-semibold dark:text-white absolute left-14 text-gray-200">
+                    <span className="font-mono text-2xl self-center whitespace-nowrap font-semibold dark:text-white absolute md:left-14 left-20 text-gray-200">
                         <span className='text-blue-500 '>&</span><span className='text-gray-500'>T</span>o<span className='text-green-400'>y</span>
                     </span>
                 </Navbar.Brand>
@@ -79,7 +79,7 @@ const NavBar = () => {
                     }
 
                 </div>
-                <Navbar.Collapse className='text-gray-200'>
+                <Navbar.Collapse className='sm:text-gray-200 px-5 md:bg-transparent bg-white text-black'>
                     <ActiveLink to='/'>Home</ActiveLink>
                     <ActiveLink to='/allToys'>All Toys</ActiveLink>
                     <ActiveLink to='/myToys'>My Toys</ActiveLink>
