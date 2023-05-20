@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateRouter = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
@@ -29,6 +31,8 @@ const PrivateRouter = ({ children }) => {
         return children;
     }
     else {
+        toast("You have to log in first to view details");
+
         return <Navigate to='/login' state={{ from: location }} replace />
     }
 };

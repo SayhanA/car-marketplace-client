@@ -53,7 +53,7 @@ const NavBar = () => {
                         user ? <Dropdown
                         arrowIcon={false}
                         inline={true}
-                        label={user?.photoURL ? <Avatar alt="User settings" img={user?.photoURL} rounded={true} />: <FaRegUserCircle className='text-4xl ml-2' />}
+                        label={user?.photoURL ? <Avatar alt="User settings" img={user?.photoURL} rounded={true} title={user?.displayName} />: <FaRegUserCircle className='text-4xl ml-2' />}
                     >
                         <Dropdown.Header>
                             <span className="block text-sm">

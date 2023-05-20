@@ -1,11 +1,9 @@
-
 import { Rating } from '@smastrom/react-rating';
 import React from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const CarCard = ({ data, index }) => {
-    // console.log(data)
     const { _id, image, vehicleType, title, ratings, price, available, description, likes, seller, category, quantity } = data;
 
     return (
