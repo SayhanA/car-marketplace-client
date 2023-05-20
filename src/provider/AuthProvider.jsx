@@ -11,7 +11,17 @@ const AuthProvider = ({children}) => {
     const [searchData, setSearchData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [order, setOrder] = useState(1);
 
+    const handleOrder = () => {
+        if(order === 1){
+            setOrder(-1);
+        }
+        else{
+            setOrder(1);
+        }
+    }
+    
     const carSearch = (props) => {
         setSearchData(props)
     }
@@ -64,6 +74,7 @@ const AuthProvider = ({children}) => {
     
     const userInfo = {
         user,
+        order,
         loading,
         signIn,
         signUp,
@@ -73,6 +84,8 @@ const AuthProvider = ({children}) => {
         updateUser,
         carSearch,
         searchData,
+        handleOrder,
+
 
     }
     

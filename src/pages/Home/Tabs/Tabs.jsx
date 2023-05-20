@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import CarCard from '../CarrCard/CarCard';
+import { FaLongArrowAltRight } from 'react-icons/fa';
 
 const ReactTabs = () => {
     const [cars, setCars] = useState([]);
-    const [props, setProps] = useState("Classic")
+    const [props, setProps] = useState("Classic");
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         // console.log(props);
@@ -33,30 +35,57 @@ const ReactTabs = () => {
                 <TabPanel>
                     <div className='grid grid-cols-3 gap-10 p-5'>
                         {
-                            cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars.slice(0, 6).map((data, index) => <CarCard data={data} index={index} key={data._id}></CarCard>)
+                        }
+                        {
+                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
+                    {
+                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-3 gap-10 p-5'>
                         {
-                            cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                        }
+                        {
+                            show && cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
+                    {
+                        cars.length > 6 && !show &&<button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 border float-right'>Show More <FaLongArrowAltRight className='text-xl' /> </button> 
+                    }
+                    {
+                        cars.length > 6 && show &&<button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 border float-right'>Show Less <FaLongArrowAltRight className='text-xl' /> </button> 
+                    }
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-3 gap-10 p-5'>
                         {
-                            cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                        }
+                        {
+                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
+                    {
+                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-3 gap-10 p-5'>
                         {
-                            cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                        }
+                        {
+                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
+                    {
+                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
                 </TabPanel>
             </Tabs>
         </div>

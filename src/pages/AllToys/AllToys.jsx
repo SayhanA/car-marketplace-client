@@ -3,10 +3,8 @@ import useTitle from '../../shared/hooks/useTitle';
 import Search from '../../shared/Search/Search';
 import Countdown from 'react-countdown';
 import { Link, Navigate, useLoaderData } from 'react-router-dom';
-import CarCard from '../Home/CarrCard/CarCard';
 import { Rating } from '@smastrom/react-rating';
-import { FaLongArrowAltRight } from 'react-icons/fa';
-import { Button } from 'flowbite-react';
+import { FaAngleLeft, FaAngleRight, FaLongArrowAltRight } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
 
 
@@ -14,8 +12,34 @@ const AllToys = () => {
     useTitle("All Toys");
     const [carNum, setCarNum] = useState(12);
     const [data, setData] = useState([]);
+    const { searchData, order } = useContext(AuthContext);
 
-    const { searchData } = useContext(AuthContext);
+    const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(20);
+
+    // const { totalProducts } = useLoaderData();
+
+    const totalPages = Math.ceil(data.length / itemsPerPage)
+
+    const pageNumbers = [...Array(totalPages).keys()];
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/paginate?pages=${currentPage}&limit=${itemsPerPage}&sort=${order}`)
+            const data2 = await res.json();
+            setProducts(data2);
+        }
+        fetchData()
+    }, [currentPage, itemsPerPage, order])
+
+
+    const options = [6, 12, 20];
+    const handleSelectChange = event => {
+        setItemsPerPage(parseInt(event.target.value));
+        setCurrentPage(0);
+    }
+    console.log(products)
+
 
     const loader = useLoaderData();
     // console.log(loader.slice(0, 12))
@@ -39,8 +63,8 @@ const AllToys = () => {
     };
 
     return (
-        <div>
-            <Search />
+        <div className='relative pb-20 '>
+            <div className='h-[70px] bg-[#292944]'></div>
             <div className='h-[500px] w-full relative'>
                 <img src="/images/cars.png" className='w-full h-[500px]' alt="" />
                 <div className='absolute top-0 h-[500px] w-full bg-[#ffdd009b]'>
@@ -51,30 +75,12 @@ const AllToys = () => {
                     <p className='text-center font-bold py-10 text-2xl text-white'>We provide Best Products for Customers</p>
                 </div>
             </div>
-            {/* <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
-                {
-                    data.slice(0, 12).map((car, index) => <div key={index} className="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src={car.image} alt="Shoes" /></figure>
-                        <div className="card-body">
-                            <h2 className="card-title">{car.title}</h2>
-                            <p>{car.description}</p>
-                            <p><span className='font-bold'>Seller:</span> {car.seller} </p>
-                            <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
-                            <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
-                            <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
-                            <div className="card-actions justify-between">
-                                <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
-                                <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
-                                
-                            </div>
-                        </div>
-                    </div>)
-                }
-            </div> */}
+            <Search />
+            
             <div className='grid grid-cols-3 w-10/12 mx-auto gap-10 my-20'>
                 {
-                    data.map((car, index) => <div key={index} className="card w-96 bg-base-100 shadow-xl">
-                        <figure><img src={car.image} alt="Shoes" /></figure>
+                    products.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
+                        <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{car.title}</h2>
                             <p>{car?.details? car?.details.slice(0,70) : car?.features.slice(0,70)}</p>
@@ -90,6 +96,18 @@ const AllToys = () => {
                         </div>
                     </div>)
                 }
+            </div>
+            <div className="pagination absolute bottom-10 left-[50%] translate-x-[-50%] flex items-center">
+                <FaAngleLeft onClick={() => setCurrentPage(currentPage-1)} className='text-5xl m-3 hover:bg-gray-400' />
+                {
+                    pageNumbers.map(number => <button className={currentPage === number ? "bg-gray-500 px-5 py-2" : " px-5 py-2 border"} onClick={() => { setCurrentPage(number) }} key={number}>{number + 1}</button>)
+                }
+                <select value={itemsPerPage} onChange={handleSelectChange}>
+                    {options.map(option => <option key={option} value={option}>
+                        {option}
+                    </option>)}
+                </select>
+                <FaAngleRight onClick={() => setCurrentPage(currentPage+1)} className='text-5xl m-3 hover:bg-gray-400 '  />
             </div>
         </div>
 

@@ -9,14 +9,15 @@ import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 
 const MyToys = () => {
-    useTitle("MyToys")
+    useTitle("MyToys");
+    
     const [cars, setCars] = useState([]);
     const { user } = useContext(AuthContext);
     const [id, setId] = useState('');
     const [update, setUpdate] = useState(true);
 
     useEffect(() => {
-        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars?email=${user.email}`)
+        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars?email=${user.email}&sort=${1}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -97,7 +98,16 @@ const MyToys = () => {
 
     return (
         <div>
-            <Search />
+            <div className='h-[300px] bg-[#292944] px-32 flex justify-center flex-col'>
+                <p className='text-white font-bold text-2xl pt-10'>{user?.displayName}</p>
+                <p className='text-white font-bold text-xl'>{user?.email}</p>
+                <p className='text-white pt-4'><span className='font-bold text-white'>Total Products Catagories: {cars.length} </span></p>
+                <p className='text-white'><span className='font-bold text-white'>Total Products : {cars.length * 200}/pieces </span></p>
+                
+                <img src="https://i.ibb.co/KW48mRp/madel-fotor-bg-remover-2023052016054.png" className='w-40 absolute right-32' alt="" />
+                <p>Golden Seller</p>
+            </div>
+
             <div className="overflow-x-auto w-full">
                 <table className="table lg:w-10/12 mx-auto ">
                     {/* head */}

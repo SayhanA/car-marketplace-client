@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
 import { Controller, useForm } from "react-hook-form";
 
 import useTitle from '../../shared/hooks/useTitle';
@@ -7,6 +7,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Search from '../../shared/Search/Search';
+// import Select from 'react-select/dist/declarations/src/Select';
 
 const AddAToy = () => {
     useTitle("Add A Toy")
@@ -18,17 +19,18 @@ const AddAToy = () => {
     const { user } = useContext(AuthContext);
 
     const { control, register, handleSubmit, watch, formState: { errors } } = useForm();
-    
+
     const onSubmit = data => {
 
         let n = (Math.random() * 0xfffff * 1000000).toString(16);
-        
+
         data.seller = user.displayName;
         data.sellerEmail = user.email;
         data.description = text;
         data.features = text2;
-        data.UPC = ( n + "-XUV")   ;
-        data.SKU = ( n + "-XUV") + "-234234";
+        // data.category = "New Added"
+        data.UPC = (n + "-XUV");
+        data.SKU = (n + "-XUV") + "-234234";
         data.packaging = "Box";
         console.log(data)
         setData(data)
@@ -50,7 +52,7 @@ const AddAToy = () => {
                     })
                 }
             })
-        
+
     }
     const handleTextarea = event => {
         event.preventDefault();
@@ -112,11 +114,11 @@ const AddAToy = () => {
                         </div>
 
                         <div>
-                            <p className='text-blue-600 font-bold'>Product Sub-Category</p>
-                            <Controller
-                                name="category"
+                            {/* <p className='tex   t-blue-600 font-bold'>Product Sub-Category</p> */}
+                            {/* <Controller
+                                name="category1"
                                 control={control}
-                                render={({ field }) => <CreatableSelect
+                                render={({ field }) => <Select
                                     {...field}
                                     isMulti
                                     options={[
@@ -128,7 +130,19 @@ const AddAToy = () => {
                                     ]}
 
                                 />}
-                            />
+                            /> */}
+
+                            <div className='flex  items-center gap-5'>
+                                <span className='font-bold'>Sub-category:</span>
+                                <select {...register("category")}>
+                                    <option value="Classic">Classic</option>
+                                    <option value="Sport">Sport</option>
+                                    <option value="Construction">Construction</option>
+                                    <option value="Emergency">Emergency</option>
+                                    <option value="Others">Others</option>
+                                </select>
+
+                            </div>
                         </div>
 
                         {/* <input type="text" defaultValue="1000tk/per session" {...register("cost", { required: true })} placeholder="Cost" className="lg:w-[500px] ex:w-[500px] w-[300px] block py-2.5 px-0  text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" /> */}

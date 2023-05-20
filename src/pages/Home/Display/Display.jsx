@@ -10,9 +10,9 @@ const Display = ({ car }) => {
     const { image, image5, ratings, price, title, carModel, brand, available, SKU, color } = car;
 
     return (
-        <div className="max-w-sm ml-3 border overflow-hidden shadow-lg rounded-lg relative">
+        <div className="max-w-sm ml-3 border overflow-hidden shadow-lg rounded-lg relative"  data-aos="fade-up" data-aos-duration="2000">
 
-            <div className=' border w-[350px] h-[300px] relative'>
+            <div className=' border w-[350px] h-[300px] relative' >
                 <img src={image} className='absolute' alt="" />
                 <div className='border absolute z-10  w-full h-full flex items-end p-5'>
                     <div>

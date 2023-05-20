@@ -19,14 +19,14 @@ const Home = () => {
             <Banner />
             
             <h3 className='lg:text-3xl text-center font-bold py-5 pt-10'>Top Rated Selling Cars</h3>
-            <Marquee pauseOnHover pauseOnClick>
+            <Marquee pauseOnHover pauseOnClick >
                 {
                     loader.slice(0, 6).map(car => <Display key={car._id} car={car}></Display>)
                 }
             </Marquee>  
             <Children />
 
-            <div className='h-[500px] w-full relative'>
+            <div className='h-[500px] w-full relative'  data-aos="fade-up">
                 <img src="/images/cars.png" className='w-full h-[500px]' alt="" />
                 <div className='absolute top-0 h-[500px] w-full bg-[#ffdd009b]'>
                     <h2 className='lg:text-4xl text-center font-bold pt-10'>20% Discount <br /> On All Kid's Education Toys</h2>

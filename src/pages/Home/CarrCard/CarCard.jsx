@@ -4,13 +4,13 @@ import React from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const CarCard = ({ data }) => {
+const CarCard = ({ data, index }) => {
     // console.log(data)
     const { _id, image, vehicleType, title, ratings, price, available, description, likes, seller, category, quantity } = data;
 
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-            <figure><img src={image} alt="Shoes" /></figure>
+        <div className="card bg-base-100 shadow-xl"  data-aos="fade-up" >
+            <figure><img src={image} className='h-[200px]' alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p>{description}</p>

@@ -6,7 +6,7 @@ const Banner = () => {
     return (
 
         <div className="h-[750px] sm:h-64 xl:h-[750px] 2xl:h-[750px]">
-            <Carousel className='relative'>
+            <Carousel className='relative'  data-aos="fade-down"  data-aos-duration="2000">
                 <div className='bg-[#453D62] h-full w-full grid lg:grid-cols-2'>
                     <div>
                         <img src="/images/children2.png" className='absolute bottom-0 -left-40 w-[900px]' alt="" />

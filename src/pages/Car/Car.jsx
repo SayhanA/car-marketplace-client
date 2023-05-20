@@ -41,14 +41,14 @@ const Car = () => {
             <div className='px-32 pb-10 py-20 grid grid-cols-2'>
 
                 <div className='p-20 relative'>
-                    <img src={img} alt="" />
-                    <div className='flex absolute left-0 bottom-20'>
-                        <img onClick={() => setImg(image2)} className='w-[25%] border' src={image2} alt="" />
-                        <img onClick={() => setImg(image3)} className='w-[25%] border' src={image3} alt="" />
-                        <img onClick={() => setImg(image4)} className='w-[25%] border' src={image4} alt="" />
-                        <img onClick={() => setImg(image5)} className='w-[25%] border' src={image5} alt="" />
+                    <img src={img} className='w-full' alt="car image" />
+                    <div className='flex absolute left-0 bottom-10 w-full'>
+                        <img onClick={() => setImg(image2)} className='w-[25%] border w-full' src={image2} alt="" />
+                        <img onClick={() => setImg(image3)} className='w-[25%] border w-full' src={image3} alt="" />
+                        <img onClick={() => setImg(image4)} className='w-[25%] border w-full' src={image4} alt="" />
+                        <img onClick={() => setImg(image5)} className='w-[25%] border w-full' src={image5} alt="" />
                     </div>
-                    <div className='flex items-center text-xl font-bold absolute left-0 bottom-6'><Rating style={{ maxWidth: 150 }} value={ratings} readOnly /> ({ratings}) </div>
+                    <div className='flex items-center text-xl font-bold absolute left-0 bottom-0'><Rating style={{ maxWidth: 150 }} value={ratings} readOnly /> ({ratings}) </div>
                     <div className='absolute top-5 left-5 text-3xl flex items-center'><FaRegBookmark />{likes}L</div>
                 </div>
                 <div className=''>
