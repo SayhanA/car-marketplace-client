@@ -124,7 +124,7 @@ const LogIn = () => {
      
 
     return (
-        <div className='h-[750px] w-full flex justify-center items-center gap-40 bg-[#FECCFF] '>
+        <div className='h-[750px] w-full flex justify-center items-center gap-40 bg-[#221630] '>
             <div className='lg:block hidden'>
                 {/* <img src="/public/images/login.png.jpg" alt="" /> */}
             </div>

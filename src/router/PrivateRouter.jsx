@@ -31,7 +31,7 @@ const PrivateRouter = ({ children }) => {
         return children;
     }
     else {
-        toast("You have to log in first to view details");
+        // toast("You have to log in first to view details");
 
         return <Navigate to='/login' state={{ from: location }} replace />
     }
