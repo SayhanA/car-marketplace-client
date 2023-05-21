@@ -1,6 +1,6 @@
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaCarSide, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 
@@ -12,7 +12,7 @@ const LogIn = () => {
 
     const { signIn, handleGoogleSignIn, handleGitHubSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
-    
+
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
@@ -23,27 +23,27 @@ const LogIn = () => {
         const password = form.password.value;
         console.log(email, password)
         signIn(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
+            .then(result => {
+                const user = result.user;
+                console.log(user);
 
-            handleJwtToken(user, form)
-            
-            // navigate(from)
-            setSignInError({
-                error: false,
-                message: "Congratulation You are successfully logged in"
-            })
-            form.reset();
+                handleJwtToken(user, form)
 
-        })
-        .catch(error => {
-            console.log(error)
-            setSignInError({
-                error: true,
-                message: error.message
+                // navigate(from)
+                setSignInError({
+                    error: false,
+                    message: "Congratulation You are successfully logged in"
+                })
+                form.reset();
+
             })
-        })
+            .catch(error => {
+                console.log(error)
+                setSignInError({
+                    error: true,
+                    message: error.message
+                })
+            })
     }
 
     const handlePassword = e => {
@@ -76,29 +76,29 @@ const LogIn = () => {
 
     const handleGoogleLogin = () => {
         handleGoogleSignIn()
-        .then(result => {
-            const user = result.user;
+            .then(result => {
+                const user = result.user;
 
-            handleJwtToken(user)
-            
-            // navigate(from)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+                handleJwtToken(user)
+
+                // navigate(from)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
     const handleGitHubLogin = () => {
         handleGitHubSignIn()
-        .then(result => {
-            const user = result.user;
+            .then(result => {
+                const user = result.user;
 
-            handleJwtToken(user)
-            
-            // navigate(from)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+                handleJwtToken(user)
+
+                // navigate(from)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -106,7 +106,7 @@ const LogIn = () => {
         const loggedUser = {
             email: user.email
         }
-        
+
         fetch('https://b7a11-toy-marketplace-server-side-seven.vercel.app/jwt', {
             method: 'POST',
             headers: {
@@ -114,68 +114,78 @@ const LogIn = () => {
             },
             body: JSON.stringify(loggedUser)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("JWT token data" ,data);
-            localStorage.setItem('toy-car-token', data.token);
-            navigate(from)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("JWT token data", data);
+                localStorage.setItem('toy-car-token', data.token);
+                navigate(from)
+            })
     }
-     
+
 
     return (
-        <div className='h-[750px] w-full flex justify-center items-center gap-40 bg-[#221630] '>
-            <div className='lg:block hidden'>
-                {/* <img src="/public/images/login.png.jpg" alt="" /> */}
-            </div>
-            <div>
-                <div className="sm:w-[500px] bg-white px-10 py-10 rounded-xl">
-                    <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-                        {
-                            signInError?.error === false && <p className='text-xl text-green-400 font-bold'>{signInError?.message}</p>
-                        }
-                        <p className='text-2xl font-bold text-blue-500 text-center'>LogIn</p>
-
-                        <div className="relative z-0 w-full mb-6 group">
-                            <input type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label htmlFor="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-                        </div>
-
-                        <div className="relative z-0 w-full mb-6 group">
+        <div>
+            <div className='h-[75px] bg-[#292944]'></div>
+            <div className='h-[700px] w-full lg:grid items-center relative' style={{ gridTemplateColumns: "60% 40%" }}>
+                <div className='lg:block hidden relative'>
+                    <div className='h-[200px] flex items-end justify-center'><FaCarSide className='text-6xl text-blue-400' /></div>
+                    <img src="https://i.ibb.co/87LBdYz/6243.jpg" className='w-full' alt="" />
+                    <div className='w-full h-full flex justify-center flex-col items-center absolute top-0'>
+                        <p className='text-2xl'>Nice to see you again</p>
+                        <p className='text-5xl font-bold font-serif pt-2 pb-5'>Welcome Back</p>
+                        <div className='p-1 bg-gray-600 px-20 mb-14 rounded-xl'></div>
+                        <p className='w-8/12 text-justify'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio aperiam facilis asperiores eos hic quos. Sint, voluptates debitis. Excepturi, quis dolorum quod modi in eos! Eos quidem error id sunt. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reiciendis consequatur temporibus qui est voluptate provident ad fuga et officia unde quod officiis possimus cum eligendi ipsum asperiores, recusandae hic!</p>
+                    </div>
+                </div>
+                <div className='flex justify-center'>
+                    <div className="sm:w-[400px] bg-white py-10 rounded-xl">
+                        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                             {
-                                show ? <FaEye onClick={() => setShow(!show)} className='text-gray-500 absolute right-3 top-4 z-30' /> : <FaEyeSlash onClick={() => setShow(!show)} className='text-gray-500 absolute right-3 top-4' />
+                                signInError?.error === false && <p className='text-xl text-green-400 font-bold'>{signInError?.message}</p>
                             }
-                            <input onChange={handlePassword} type={show ? "text" : "password"} name="password" id="password" value={password} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                            <label htmlFor="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-                            {error && <p className='text-red-500'>{error}</p>}
-                        </div>
+                            <p className='text-2xl font-bold text-blue-500 text-center'>LogIn</p>
 
-                        <div className="flex items-center gap-2">
-                            <Checkbox id="remember" />
-                            <Label htmlFor="remember">
-                                Remember me
-                            </Label>
-                            <Link className='text-red-500 ml-auto font-semibold'>forgotten password</Link>
-                        </div>
-                        <input className='btn bg-blue-500 text-lg normal-case' type="submit" value="Login" />
-                        <p>New to this website? <Link to='/signUp' className='text-blue-500 font-semibold underline'>Sign Up</Link></p>
-                        {
-                            signInError?.error && <p className='text-xl text-red-500 font-bold'>{signInError?.message}</p>
-                        }
-                    </form>
+                            <div className="relative z-0 w-full mb-6 group">
+                                <input type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                            </div>
 
-                    <div>
-                        <div className='flex h-1 items-center mt-10 gap-5'>
-                            <div className='w-[50%] border border-gray-500'></div>
-                            <span>OR</span>
-                            <div className='w-[50%] border border-gray-500'></div>
-                        </div>
+                            <div className="relative z-0 w-full mb-6 group">
+                                {
+                                    show ? <FaEye onClick={() => setShow(!show)} className='text-gray-500 absolute right-3 top-4 z-30' /> : <FaEyeSlash onClick={() => setShow(!show)} className='text-gray-500 absolute right-3 top-4' />
+                                }
+                                <input onChange={handlePassword} type={show ? "text" : "password"} name="password" id="password" value={password} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <label htmlFor="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                                {error && <p className='text-red-500'>{error}</p>}
+                            </div>
 
-                        <div onClick={handleGoogleLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-8 absolute left-2' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />  Google</div>
-                        <div onClick={handleGitHubLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-9 absolute left-2' src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="" />  GitHub</div>
+                            <div className="flex items-center gap-2">
+                                <Checkbox id="remember" />
+                                <Label htmlFor="remember">
+                                    Remember me
+                                </Label>
+                                <Link className='text-red-500 ml-auto font-semibold'>forgotten password</Link>
+                            </div>
+                            <input className='btn bg-blue-500 text-lg normal-case' type="submit" value="Login" />
+                            <p>New to this website? <Link to='/signUp' className='text-blue-500 font-semibold underline'>Sign Up</Link></p>
+                            {
+                                signInError?.error && <p className='text-xl text-red-500 font-bold'>{signInError?.message}</p>
+                            }
+                        </form>
+
+                        <div>
+                            <div className='flex h-1 items-center mt-10 gap-5'>
+                                <div className='w-[50%] border border-gray-500'></div>
+                                <span>OR</span>
+                                <div className='w-[50%] border border-gray-500'></div>
+                            </div>
+
+                            <div onClick={handleGoogleLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-8 absolute left-2' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />  Google</div>
+                            <div onClick={handleGitHubLogin} className='w-11/12 mx-auto border-2 border-gray-400 rounded-full h-[50px] mt-5 flex justify-center items-center font-bold relative'> <img className='w-9 absolute left-2' src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png" alt="" />  GitHub</div>
+
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
