@@ -14,7 +14,7 @@ const AllToys = () => {
     const navigate = useNavigate();
     const [carNum, setCarNum] = useState(12);
     const [data, setData] = useState([]);
-    const { searchData, order } = useContext(AuthContext);
+    const { user, searchData, order } = useContext(AuthContext);
 
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -47,13 +47,13 @@ const AllToys = () => {
     // console.log(loader.slice(0, 12))
 
     useEffect(() => {
-        if(searchData){
+        if (searchData) {
             setData(searchData)
         }
-        else{
+        else {
             setData(loader)
         }
-    },[searchData])
+    }, [searchData])
 
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -65,12 +65,12 @@ const AllToys = () => {
     };
 
     const handleNext = (currentPage) => {
-        if(pageNumbers.length > currentPage+1){
+        if (pageNumbers.length > currentPage + 1) {
             setCurrentPage(currentPage + 1);
         }
     }
     const handlePrevious = (currentPage) => {
-        if( currentPage > 0 ){
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
     }
@@ -78,13 +78,13 @@ const AllToys = () => {
     const handleOnClick = (id) => {
         console.log(id);
         toast("You have to log in first to view details")
-        
-        setTimeout(()=> {
+
+        setTimeout(() => {
             navigate(`/car/${id}`)
-         }
-         ,5000);
+        }
+            , 5000);
     }
-    
+
     return (
         <div className='relative pb-20 '>
             <div className='h-[70px] bg-[#292944]'></div>
@@ -99,40 +99,42 @@ const AllToys = () => {
                 </div>
             </div>
             <Search />
-            
+
             <div className='grid lg:grid-cols-3 md:w-10/12 mx-auto gap-10 my-20'>
                 {
-                   !searchData && products?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
+                    !searchData && products?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
                         <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{car.title}</h2>
-                            <p>{car?.details? car?.details.slice(0,70) : car?.features.slice(0,70)}</p>
+                            <p>{car?.details ? car?.details.slice(0, 70) : car?.features.slice(0, 70)}</p>
                             <p><span className='font-bold'>Seller:</span> {car.seller} </p>
                             <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
                             <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
                             <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
                             <div className="card-actions justify-between">
                                 <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
-                                <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
-                                
+                                {
+                                    user ? <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link> : <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                }
                             </div>
                         </div>
                     </div>)
                 }
                 {
-                   searchData && searchData?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
+                    searchData && searchData?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
                         <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{car.title}</h2>
-                            <p>{car?.details? car?.details.slice(0,70) : car?.features.slice(0,70)}</p>
+                            <p>{car?.details ? car?.details.slice(0, 70) : car?.features.slice(0, 70)}</p>
                             <p><span className='font-bold'>Seller:</span> {car.seller} </p>
                             <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
                             <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
                             <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
                             <div className="card-actions justify-between">
                                 <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
-                                <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
-                                
+                                {
+                                    user ? <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link> : <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                }
                             </div>
                         </div>
                     </div>)
@@ -148,7 +150,7 @@ const AllToys = () => {
                         {option}
                     </option>)}
                 </select>
-                <FaAngleRight onClick={() => handleNext(currentPage)} className='text-5xl m-3 hover:bg-gray-400 '  />
+                <FaAngleRight onClick={() => handleNext(currentPage)} className='text-5xl m-3 hover:bg-gray-400 ' />
             </div>
         </div>
 

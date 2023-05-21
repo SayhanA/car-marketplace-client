@@ -1,12 +1,13 @@
 import { Rating } from '@smastrom/react-rating';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const CarCard = ({ data, index }) => {
     const { _id, image, vehicleType, title, ratings, price, available, description, likes, seller, category, quantity } = data;
-
+    const {user} = useContext(AuthContext);
     const navigate = useNavigate();
     
     const handleOnClick = (id) => {
@@ -31,7 +32,9 @@ const CarCard = ({ data, index }) => {
                 <p className='font-bold'><span className='font-bold'>Price:</span> {price}$ </p>
                 <div className="card-actions justify-between">
                     <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={ratings} readOnly />({ratings}) </div>
-                    <Link onClick={() => handleOnClick(_id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                    {
+                        user ? <Link to={`car/${_id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link> : <Link onClick={() => handleOnClick(_id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                    }
                 </div>
             </div>
         </div>
