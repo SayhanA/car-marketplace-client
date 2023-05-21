@@ -6,10 +6,12 @@ import { Link, Navigate, useLoaderData, useNavigate, useNavigation } from 'react
 import { Rating } from '@smastrom/react-rating';
 import { FaAngleLeft, FaAngleRight, FaLongArrowAltRight } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 
 const AllToys = () => {
     useTitle("All Toys");
+    const navigate = useNavigate();
     const [carNum, setCarNum] = useState(12);
     const [data, setData] = useState([]);
     const { searchData, order } = useContext(AuthContext);
@@ -73,6 +75,15 @@ const AllToys = () => {
         }
     }
 
+    const handleOnClick = (id) => {
+        console.log(id);
+        toast("You have to log in first to view details")
+        
+        setTimeout(()=> {
+            navigate(`/car/${id}`)
+         }
+         ,5000);
+    }
     
     return (
         <div className='relative pb-20 '>
@@ -102,7 +113,7 @@ const AllToys = () => {
                             <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
                             <div className="card-actions justify-between">
                                 <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
-                                <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
                                 
                             </div>
                         </div>
@@ -120,7 +131,7 @@ const AllToys = () => {
                             <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
                             <div className="card-actions justify-between">
                                 <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
-                                <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                <Link onClick={() => handleOnClick(car._id)} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
                                 
                             </div>
                         </div>
