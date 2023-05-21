@@ -149,7 +149,7 @@ const MyToys = () => {
                                     </label>
                                 </th>
                                 <td>
-                                    <div className="flex items-center space-x-3">
+                                    <div className="flex items-center space-x-3 w-[500px] overflow-hidden">
                                         <div className="avatar">
                                             <div className="mask w-48 h-32">
                                                 <img src={car.image} alt="Avatar Tailwind CSS Component" />
@@ -160,6 +160,11 @@ const MyToys = () => {
                                             <div className="text-sm opacity-50"><Rating style={{ maxWidth: 100 }} value={car?.rating} readOnly /></div>
                                         </div>
                                     </div>
+                                </td>
+                                <td className='text-lg font-bold'>
+                                    {car?.quantity}/pieces
+                                    <br />
+                                    <span className="badge badge-ghost badge-sm">{car?.UPC}</span>
                                 </td>
                                 <td className='text-lg font-bold'>
                                     {car?.carModel}
