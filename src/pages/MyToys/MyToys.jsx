@@ -125,11 +125,7 @@ const MyToys = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>
-                                <label>
-                                    <input type="checkbox" className="checkbox" />
-                                </label>
-                            </th>
+                            
                             <th>Car</th>
                             <th>Quantity</th>
                             <th>Model & serial</th>
@@ -143,11 +139,7 @@ const MyToys = () => {
 
                         {
                             cars?.map((car, index) => <tr key={index}>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
+                                
                                 <td>
                                     <div className="flex items-center space-x-3 w-[500px] overflow-hidden">
                                         <div className="avatar">
