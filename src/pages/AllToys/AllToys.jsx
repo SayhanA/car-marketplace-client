@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import useTitle from '../../shared/hooks/useTitle';
 import Search from '../../shared/Search/Search';
 import Countdown from 'react-countdown';
-import { Link, Navigate, useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating';
 import { FaAngleLeft, FaAngleRight, FaLongArrowAltRight } from 'react-icons/fa';
 import { AuthContext } from '../../provider/AuthProvider';
@@ -62,6 +62,18 @@ const AllToys = () => {
         }
     };
 
+    const handleNext = (currentPage) => {
+        if(pageNumbers.length > currentPage+1){
+            setCurrentPage(currentPage + 1);
+        }
+    }
+    const handlePrevious = (currentPage) => {
+        if( currentPage > 0 ){
+            setCurrentPage(currentPage - 1);
+        }
+    }
+
+    
     return (
         <div className='relative pb-20 '>
             <div className='h-[70px] bg-[#292944]'></div>
@@ -116,7 +128,7 @@ const AllToys = () => {
                 }
             </div>
             <div className="pagination absolute bottom-10 left-[50%] translate-x-[-50%] flex items-center">
-                <FaAngleLeft onClick={() => setCurrentPage(currentPage-1)} className='text-5xl m-3 hover:bg-gray-400' />
+                <FaAngleLeft onClick={() => handlePrevious(currentPage)} className='text-5xl m-3 hover:bg-gray-400' />
                 {
                     pageNumbers?.map(number => <button className={currentPage === number ? "bg-gray-500 px-5 py-2" : " px-5 py-2 border"} onClick={() => { setCurrentPage(number) }} key={number}>{number + 1}</button>)
                 }
@@ -125,7 +137,7 @@ const AllToys = () => {
                         {option}
                     </option>)}
                 </select>
-                <FaAngleRight onClick={() => setCurrentPage(currentPage+1)} className='text-5xl m-3 hover:bg-gray-400 '  />
+                <FaAngleRight onClick={() => handleNext(currentPage)} className='text-5xl m-3 hover:bg-gray-400 '  />
             </div>
         </div>
 

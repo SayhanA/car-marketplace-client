@@ -38,11 +38,14 @@ const ReactTabs = () => {
                             !show && cars?.slice(0, 6)?.map((data, index) => <CarCard data={data} index={index} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
-                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                        cars.length > 6 && !show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5  float-right'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
+                    {
+                        cars.length > 6 && show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5  float-right'>Show Less <FaLongArrowAltRight className='text-xl' /> </button>
                     }
                 </TabPanel>
                 <TabPanel>
@@ -67,11 +70,14 @@ const ReactTabs = () => {
                             !show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
-                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                        cars.length > 6 && !show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 float-right'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
+                    {
+                        cars.length > 6 && show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 float-right'>Show Less <FaLongArrowAltRight className='text-xl' /> </button>
                     }
                 </TabPanel>
                 <TabPanel>
@@ -80,11 +86,14 @@ const ReactTabs = () => {
                             !show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
-                        cars.length > 6 && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                        cars.length > 6 && !show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 float-right'>Show More <FaLongArrowAltRight className='text-xl' /> </button>
+                    }
+                    {
+                        cars.length > 6 && show && <button onClick={() => setShow(!show)} className='btn btn-primary normal-case font-bold text-[17px] gap-5 float-right'>Show Less <FaLongArrowAltRight className='text-xl' /> </button>
                     }
                 </TabPanel>
             </Tabs>
