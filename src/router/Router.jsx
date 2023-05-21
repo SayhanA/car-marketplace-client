@@ -21,12 +21,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,     
-                loader: () => fetch('https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars'),
+                loader: () => fetch('https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars'),
             },
             {
                 path: 'allToys',
                 element: <AllToys />,
-                loader: () => fetch('https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars')
+                loader: () => fetch('https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars')
             },
             {
                 path: 'myToys',
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             {
                 path: 'car/:id',
                 element: <PrivateRouter><Car /></PrivateRouter>,
-                loader: ({params}) => fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/car/${params.id}`)
+                loader: ({params}) => fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/car/${params.id}`)
             }
         ]
     }

@@ -8,7 +8,7 @@ const UserReview = () => {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch('https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/users')
+        fetch('https://b7a11-toy-marketplace-server-side-seven.vercel.app/users')
         .then(res => res.json())
         .then(data => setUsers(data))
     },[])
@@ -32,7 +32,7 @@ const UserReview = () => {
                                 <div id="slider" className="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
 
                                     {
-                                        users.map((user,index) => <Slide key={index} index={index}>
+                                        users?.map((user,index) => <Slide key={index} index={index}>
                                         <div className="flex flex-col flex-shrink-0 p-8 relative w-full sm:w-[450px] h-[300px] border border-gray-300 rounded-md ">
                                             <div className='flex w-full items-center gap-5'>
                                                 <img src={user.image} className='w-28 h-28  border-gray-400 rounded-full' alt="" />

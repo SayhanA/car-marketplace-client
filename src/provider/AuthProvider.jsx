@@ -37,6 +37,7 @@ const AuthProvider = ({children}) => {
     } 
 
     const logOut = () => {
+        localStorage.removeItem('toy-car-token')
         return signOut(auth);
     }
 

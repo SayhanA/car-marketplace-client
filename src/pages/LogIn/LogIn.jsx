@@ -26,7 +26,10 @@ const LogIn = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            navigate(from)
+
+            handleJwtToken(user, form)
+            
+            // navigate(from)
             setSignInError({
                 error: false,
                 message: "Congratulation You are successfully logged in"
@@ -75,7 +78,10 @@ const LogIn = () => {
         handleGoogleSignIn()
         .then(result => {
             const user = result.user;
-            navigate(from)
+
+            handleJwtToken(user)
+            
+            // navigate(from)
         })
         .catch(error => {
             console.log(error)
@@ -85,12 +91,37 @@ const LogIn = () => {
         handleGitHubSignIn()
         .then(result => {
             const user = result.user;
-            navigate(from)
+
+            handleJwtToken(user)
+            
+            // navigate(from)
         })
         .catch(error => {
             console.log(error)
         })
     }
+
+
+    const handleJwtToken = user => {
+        const loggedUser = {
+            email: user.email
+        }
+        
+        fetch('https://b7a11-toy-marketplace-server-side-seven.vercel.app/jwt', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(loggedUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("JWT token data" ,data);
+            localStorage.setItem('toy-car-token', data.token);
+            navigate(from)
+        })
+    }
+     
 
     return (
         <div className='h-[750px] w-full flex justify-center items-center gap-40 bg-[#FECCFF] '>

@@ -9,7 +9,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import Search from '../../shared/Search/Search';
 
 const Car = () => {
-    useTitle(" Single Car");
+    useTitle(" Single Toy Details");
     const [num, setNum] = useState(1);
     const loader = useLoaderData()
     // console.log(loader)
@@ -92,7 +92,7 @@ const Car = () => {
                 <div className='pt-6 font-bold'>
                     <p className='font-bold text-lg py-3'>Features</p>
                     {
-                        features.map((data, index) => <li key={index}>{data}</li>)
+                          features?.map((data, index) => <li key={index}>{data}</li>)
                     }
                 </div>
             </div>

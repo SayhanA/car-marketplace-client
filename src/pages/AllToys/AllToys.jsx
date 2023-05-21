@@ -25,7 +25,7 @@ const AllToys = () => {
     const pageNumbers = [...Array(totalPages).keys()];
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/paginate?pages=${currentPage}&limit=${itemsPerPage}&sort=${order}`)
+            const res = await fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/paginate?pages=${currentPage}&limit=${itemsPerPage}&sort=${order}`)
             const data2 = await res.json();
             setProducts(data2);
         }
@@ -79,7 +79,25 @@ const AllToys = () => {
             
             <div className='grid lg:grid-cols-3 md:w-10/12 mx-auto gap-10 my-20'>
                 {
-                    products.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
+                   !searchData && products?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
+                        <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{car.title}</h2>
+                            <p>{car?.details? car?.details.slice(0,70) : car?.features.slice(0,70)}</p>
+                            <p><span className='font-bold'>Seller:</span> {car.seller} </p>
+                            <p><span className='font-bold'>Sub-Category:</span> {car.category[0].value ? car.category[0].value : car.category} </p>
+                            <p className='font-bold'><span className='font-bold'>Available Quantity:</span> {car.quantity} <span className='text-gray-500 font-medium'>pieces</span> </p>
+                            <p className='font-bold'><span className='font-bold'>Price:</span> {car.price}$ </p>
+                            <div className="card-actions justify-between">
+                                <div className='flex gap-2'><span className='font-bold'>Likes:</span> <Rating style={{ maxWidth: 100 }} value={car.ratings} readOnly />({car.ratings}) </div>
+                                <Link to={`/car/${car._id}`} className="btn btn-primary normal-case flex gap-3 btn-outline">Details <FaLongArrowAltRight className='text-xl' /> </Link>
+                                
+                            </div>
+                        </div>
+                    </div>)
+                }
+                {
+                   searchData && searchData?.map((car, index) => <div key={index} className="card  bg-base-100 shadow-xl">
                         <figure><img src={car.image} className='h-[250px]' alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{car.title}</h2>
@@ -100,10 +118,10 @@ const AllToys = () => {
             <div className="pagination absolute bottom-10 left-[50%] translate-x-[-50%] flex items-center">
                 <FaAngleLeft onClick={() => setCurrentPage(currentPage-1)} className='text-5xl m-3 hover:bg-gray-400' />
                 {
-                    pageNumbers.map(number => <button className={currentPage === number ? "bg-gray-500 px-5 py-2" : " px-5 py-2 border"} onClick={() => { setCurrentPage(number) }} key={number}>{number + 1}</button>)
+                    pageNumbers?.map(number => <button className={currentPage === number ? "bg-gray-500 px-5 py-2" : " px-5 py-2 border"} onClick={() => { setCurrentPage(number) }} key={number}>{number + 1}</button>)
                 }
                 <select value={itemsPerPage} onChange={handleSelectChange}>
-                    {options.map(option => <option key={option} value={option}>
+                    {options?.map(option => <option key={option} value={option}>
                         {option}
                     </option>)}
                 </select>

@@ -21,7 +21,7 @@ const Home = () => {
             <h3 className='lg:text-3xl text-center font-bold py-5 pt-10'>Top Rated Selling Cars</h3>
             <Marquee pauseOnHover pauseOnClick >
                 {
-                    loader.slice(0, 6).map(car => <Display key={car._id} car={car}></Display>)
+                    loader?.slice(0, 6)?.map(car => <Display key={car._id} car={car}></Display>)
                 }
             </Marquee>  
             <Children />

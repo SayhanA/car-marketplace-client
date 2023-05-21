@@ -12,17 +12,23 @@ const MyToys = () => {
     useTitle("MyToys");
     
     const [cars, setCars] = useState([]);
-    const { user } = useContext(AuthContext);
+    const { user, order, handleOrder } = useContext(AuthContext);
     const [id, setId] = useState('');
     const [update, setUpdate] = useState(true);
 
     useEffect(() => {
-        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars?email=${user.email}&sort=${1}`)
+        fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars?email=${user.email}&sort=${order}`, {
+        // fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars?email=${user.email}&sort=${order}`, {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('toy-car-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setCars(data)
             })
-    }, [user, update])
+    }, [user, update, order])
 
     const handleId = (id) => {
         // console.log("confirm")
@@ -39,7 +45,7 @@ const MyToys = () => {
         const info = { title, price, quantity, description }
         // console.log(info);
 
-        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${id}`, {
+        fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars/${id}`, {
             method: "PUT",
             headers: { 'content-type': "application/json" },
             body: JSON.stringify(info)
@@ -74,7 +80,7 @@ const MyToys = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 
-                fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${id}`, {
+                fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars/${id}`, {
                     method: "DELETE",
 
                 })
@@ -103,6 +109,12 @@ const MyToys = () => {
                 <p className='text-white font-bold text-xl'>{user?.email}</p>
                 <p className='text-white pt-4'><span className='font-bold text-white'>Total Products Catagories: {cars.length} </span></p>
                 <p className='text-white'><span className='font-bold text-white'>Total Products : {cars.length * 200}/pieces </span></p>
+
+                <div onClick={handleOrder} className='absolute left-[25%] ml-10'>
+                    {
+                        order === 1 ? <button className='btn normal-case rounded-md px-9 text-[17px]'>Descending</button> : <button className='btn normal-case rounded-md px-9 text-[17px]'>Ascending</button>
+                    }
+                </div>
                 
                 <img src="https://i.ibb.co/KW48mRp/madel-fotor-bg-remover-2023052016054.png" className='w-40 absolute right-32' alt="" />
                 <p>Golden Seller</p>
@@ -128,7 +140,7 @@ const MyToys = () => {
                     <tbody>
 
                         {
-                            cars.map((car, index) => <tr key={index}>
+                            cars?.map((car, index) => <tr key={index}>
                                 <th>
                                     <label>
                                         <input type="checkbox" className="checkbox" />

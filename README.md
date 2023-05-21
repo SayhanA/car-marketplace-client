@@ -21,7 +21,7 @@
 * ### [Web site Link]: https://toy-marketplace-a3965.web.app
 * ### [Client Repo Link]:https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-client-side-SayhanA
 
-* ### [Web site Link]: https://b7a11-toy-marketplace-server-side-sayhana.vercel.app
+* ### [Web site Link]: https://b7a11-toy-marketplace-server-side-seven.vercel.app
 
 * ### [Server Repo Link]: https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-server-side-SayhanA
 

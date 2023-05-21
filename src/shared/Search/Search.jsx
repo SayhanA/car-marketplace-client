@@ -24,13 +24,14 @@ const Search = () => {
             // console.log("search text")
         }
         else {
-            fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/search/${text}`)
+            fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/search/${text}`)
                 .then(res => res.json())
                 .then(data => {
                     setRes(data)
                 })
         }
     }, [text])
+
 
     const handleSubmit = e => {
         setShow(false)
@@ -75,7 +76,7 @@ const Search = () => {
                         </button>
                         <div onClick={handleOnClick} className={`text-white absolute top-10 z-50  bg-[#ffffff] rounded-lg w-full ${show ? "" : 'hidden'} `}>
                             {
-                                res.map((data, index) => <p onClick={() => setText(data.title)} className='pl-10 p-2 border-b-2 text-black flex items-center gap-5' key={index}>
+                                res?.map((data, index) => <p onClick={() => setText(data.title)} className='pl-10 p-2 border-b-2 text-black flex items-center gap-5' key={index}>
                                     <FaSearch className='text-gray-400' /> {data.title}
                                 </p>)
 

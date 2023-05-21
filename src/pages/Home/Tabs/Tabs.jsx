@@ -12,7 +12,7 @@ const ReactTabs = () => {
 
     useEffect(() => {
         // console.log(props);
-        fetch(`https://b7a11-toy-marketplace-server-side-sayhana.vercel.app/cars/${props}`)
+        fetch(`https://b7a11-toy-marketplace-server-side-seven.vercel.app/cars/${props}`)
             .then(res => res.json())
             .then(data => {
                 setCars(data)
@@ -35,10 +35,10 @@ const ReactTabs = () => {
                 <TabPanel>
                     <div className='md:grid lg:grid-cols-3 gap-10 p-5 flex flex-col'>
                         {
-                            !show && cars.slice(0, 6).map((data, index) => <CarCard data={data} index={index} key={data._id}></CarCard>)
+                            !show && cars?.slice(0, 6)?.map((data, index) => <CarCard data={data} index={index} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
@@ -48,10 +48,10 @@ const ReactTabs = () => {
                 <TabPanel>
                     <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
-                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars.map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
@@ -64,10 +64,10 @@ const ReactTabs = () => {
                 <TabPanel>
                     <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
-                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
@@ -77,10 +77,10 @@ const ReactTabs = () => {
                 <TabPanel>
                     <div className='grid lg:grid-cols-3 gap-10 p-5'>
                         {
-                            !show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            !show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                         {
-                            show && cars.slice(0, 6).map(data => <CarCard data={data} key={data._id}></CarCard>)
+                            show && cars?.slice(0, 6)?.map(data => <CarCard data={data} key={data._id}></CarCard>)
                         }
                     </div>
                     {
