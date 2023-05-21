@@ -131,7 +131,9 @@ const MyToys = () => {
                                 </label>
                             </th>
                             <th>Car</th>
+                            <th>Quantity</th>
                             <th>Model & serial</th>
+                            <th>Price</th>
                             <th>Color</th>
                             <th>Update</th>
                             <th>Delete</th>
@@ -164,6 +166,7 @@ const MyToys = () => {
                                     <br />
                                     <span className="badge badge-ghost badge-sm">{car?.UPC}</span>
                                 </td>
+                                <td className="p-0 m-0 w-0 flex justify-center items-center pt-16 font-bold">{car?.price}$</td>
                                 <td>{car?.color}</td>
                                 <th>
 
